@@ -88,13 +88,10 @@ git version 2.39.3
 - **Crie o repositório github **: Precisamos de um repositório no [github.com/seu-user/tf-aws-network](https://github.com/) para versionarmos o código da infraestrutura.
 
 ##### 5 - Configurando o app.terraform.io
-- **Crie o Workspace no Github.com**: [app.terraform.io](https://app.terraform.io) 
-Precisamos de workspace no Terraform Cloud para executar nosso código de infraestrutura.
-
-- 5.1 - Logar no terraform.
+- **Crie o Workspace no app.terraform.io**: [app.terraform.io](https://app.terraform.io) 
+Precisamos criar uma workspace no Terraform Cloud para planejar e executar nosso código de infraestrutura.
+- **Configure as "Terraform Variables" para acesso a AWS**: https://app.terraform.io/app/NOME_DO_SEU_WORKSPACE/workspaces/tf-aws-network/variables 
 ```bash
-export TF_VAR_aws_access_key=AKIASP5X6K5HCMI6FQCT
-export TF_VAR_aws_secret_key=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
-
-terraform login
+Terraform Variables "aws_access_key"
+Terraform Variables "aws_secret_key"
 ```
