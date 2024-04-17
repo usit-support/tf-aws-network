@@ -67,8 +67,7 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_eip" "eip" {
-  domain = "vpc"
-  tags   = merge(var.tags, { Name = "eip_${var.project_id}" })
+  tags = merge(var.tags, { Name = "eip_${var.project_id}" })
 }
 
 resource "aws_nat_gateway" "nat" {
@@ -78,7 +77,7 @@ resource "aws_nat_gateway" "nat" {
 }
 
 resource "aws_security_group" "nsg_priv" {
-  name        = "nsg_pri_${var.project_id}"
+  name        = "nsg_priv_${var.project_id}"
   description = "allow inbound traffic from vpc"
   vpc_id      = aws_vpc.vpc.id
 
@@ -102,8 +101,8 @@ resource "aws_security_group" "nsg_priv" {
 }
 
 resource "aws_security_group" "nsg_pub" {
-  name        = "nsg-pub-${var.project_id}"
-  description = "allow inbound traffic from nat"
+  name        = "nsg_pub_${var.project_id}"
+  description = "allow inbound traffic from"
   vpc_id      = aws_vpc.vpc.id
 
   ingress {
@@ -123,16 +122,6 @@ resource "aws_security_group" "nsg_pub" {
   }
 
   tags = merge(var.tags, { Name = "nsg_pub_${var.project_id}" })
-}
-
-resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4" {
-  security_group_id = aws_security_group.nsg_pub.id
-  description       = "allow ssh"
-
-  from_port   = 22
-  to_port     = 22
-  cidr_ipv4   = "10.0.0.0/8"
-  ip_protocol = "tcp"
 }
 
 resource "aws_route_table" "rtb_priv" {

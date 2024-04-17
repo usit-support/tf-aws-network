@@ -11,4 +11,10 @@ terraform {
       name = "tf-aws-network"
     }
   }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.74.0"
+    }
+  }
 }
